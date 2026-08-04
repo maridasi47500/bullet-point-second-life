@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block montitre %}
+debut de mes mots: room based inventory accessory/ job tasks
+{% endblock %}
+{% block content %}
+<h1># bullet-point-second-life</h1>
+{% for x in users | reverse %}
+ <li>{{ x["first_name"]  }}</li>
+
+{% endfor %} 
+fin de mes mots : tu as un peigne, miroir, brosse à dent, rasoir, tu imagines ce que sont les choses pour un job, 
+ou un second job.
+{% endblock %}
+{% block liens %}
+<a href="/">welcome</a>
+{% endblock %}
+<a href="/add_one_user"> add one user</a><a href="/add_one_country"> add one country</a><a href="/add_one_room"> add one room</a><a href="/add_one_user_items_table"> add one user_items_table</a><a href="/add_one_user_job"> add one user_job</a><a href="/add_one_user_ai_job"> add one user_ai_job</a><a href="/add_one_bullet_point_workflows"> add one bullet_point_workflows</a><a href="/add_one_ai_job_link_table"> add one ai_job_link_table</a>

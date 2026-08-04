@@ -1,41 +1,70 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS post;
-
-CREATE TABLE user (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL
+CREATE TABLE  IF NOT EXISTS contacts (
+	contact_id INTEGER PRIMARY KEY,
+	first_name TEXT NOT NULL,
+	last_name TEXT NOT NULL,
+	email TEXT NOT NULL UNIQUE,
+	phone TEXT NOT NULL UNIQUE
 );
-CREATE TABLE job (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT UNIQUE NOT NULL,
+CREATE TABLE IF NOT EXISTS groups (
+   group_id INTEGER PRIMARY KEY,
+   name TEXT NOT NULL
 );
-CREATE TABLE room (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT UNIQUE NOT NULL,
+CREATE TABLE IF NOT EXISTS contact_groups(
+   contact_id INTEGER,
+   group_id INTEGER,
+   PRIMARY KEY (contact_id, group_id),
+   FOREIGN KEY (contact_id) 
+      REFERENCES contacts (contact_id) 
+         ON DELETE CASCADE 
+         ON UPDATE NO ACTION,
+   FOREIGN KEY (group_id) 
+      REFERENCES groups (group_id) 
+         ON DELETE CASCADE 
+         ON UPDATE NO ACTION
 );
-
-CREATE TABLE User_Items_Table (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  user_id INTEGER NOT NULL,
-  room_id TEXT NOT NULL,
-  name TEXT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES user (id)
-);
-CREATE TABLE Bullet_Point_Workflows (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  user_id INTEGER NOT NULL,
-  job_id TEXT NOT NULL,
-  content TEXT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES user (id)
-);
-CREATE TABLE AI_Job_Link_Table (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  user_id INTEGER NOT NULL,
-  job_id TEXT NOT NULL,
-  content TEXT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES user (id)
-);
+INSERT OR IGNORE INTO contacts (contact_id, first_name, last_name, email, phone)
+VALUES( '1', 'anonyme', 'noname', 'anonymous@email.fr', '+2653546434');
+INSERT OR IGNORE INTO contacts (contact_id, first_name, last_name, email, phone)
+VALUES( '2', 'anne onim', 'onim', 'anne.onim@email.com', '+86877779898');
+create table if not exists user(
+        id integer primary key autoincrement,
+        username text,
+            email text,
+            phone text,
+            country_id text,
+            password text
+      , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
+create table if not exists country(
+        id integer primary key autoincrement,
+        name text
+      , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
+create table if not exists room(
+        id integer primary key autoincrement,
+        name text
+      , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
+create table if not exists user_items_table(
+        id integer primary key autoincrement,
+        user_id text,
+            room_id text,
+            name text
+      , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
+create table if not exists user_job(
+        id integer primary key autoincrement,
+        user_id text,
+            job_id text
+      , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
+create table if not exists user_ai_job(
+        id integer primary key autoincrement,
+        user_id text,
+            job_id text
+      , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
+create table if not exists bullet_point_workflows(
+        id integer primary key autoincrement,
+        User_Job_id text,
+            content text
+      , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
+create table if not exists ai_job_link_table(
+        id integer primary key autoincrement,
+        User_Ai_Job text,
+            content text
+      , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
