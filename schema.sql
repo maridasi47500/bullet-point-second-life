@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS job (
    group_id INTEGER PRIMARY KEY,
    name TEXT NOT NULL
       , created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP                );
-);
 CREATE TABLE IF NOT EXISTS groups (
    group_id INTEGER PRIMARY KEY,
    name TEXT NOT NULL

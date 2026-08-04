@@ -1,1 +1,7 @@
-{% extends 'base.html' %}{% block content %}<form  enctype="multipart/form-data" method="POST"><div class="field"><label for="somefielduser_id">user_id</label><select id="somefielduser_id" name="user_id">{% for someuser in touslesuser %}<option value="{{ someuser['id'] }}">{{ someuser['name'] }}</option>{% endfor %}</select></div><div class="field"><label for="somefieldjob_id">job_id</label><select id="somefieldjob_id" name="job_id">{% for somejob in touslesjob %}<option value="{{ somejob['id'] }}">{{ somejob['name'] }}</option>{% endfor %}</select></div><div class="actions"><input type="submit"/></div></form>{% for x in user_ai_jobs %}{{x["user_id:references"] }}{% endfor %}{% endblock %}{% block liens %}<a href="/">bienvenue</a><a href="/add_one_user_ai_job"> add one user_ai_job</a>{% endblock %}
+{% extends 'base.html' %}{% block content %}<form  enctype="multipart/form-data" method="POST">
+<div class="field"><label for="somefielduser_id">name</label>
+<input name="name" />
+
+</div>
+
+<div class="actions"><input type="submit"/></div></form>{% for x in jobs %}{{x["user_id:references"] }}{% endfor %}{% endblock %}{% block liens %}<a href="/">bienvenue</a><a href="/add_one_job"> add one job</a>{% endblock %}
