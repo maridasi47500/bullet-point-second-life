@@ -169,6 +169,32 @@ def add_one_user_job():
     one_user = query_db("select * from user_job limit 1", one=True)
     return render_template("user_jobform.html", user_jobs=user, one_user=one_user, the_title="add new user_job", touslesuser=touslesuser, touslesjob=touslesjob)
 
+@app.route("/add_one_job", methods=["GET","POST"])
+def add_one_job():
+
+    if request.method == 'POST':
+
+        the_username = "anonyme"
+        hey=dict(request.form)
+
+
+        touslesuser= query_db("select * from user")
+
+        touslesjob= query_db("select * from job")
+
+        one_user = query_db("insert into job (name) values (:name)",hey)
+        user = query_db('select * from user_ai_job')
+
+        return render_template("jobform.html", user_ai_jobs=user, one_user=one_user, the_title="add new user_ai_job", touslesuser=touslesuser, touslesjob=touslesjob)
+
+
+    touslesuser= query_db("select * from user")
+
+    touslesjob= query_db("select * from job")
+
+    user = query_db('select * from user_ai_job')
+    one_user = query_db("select * from job limit 1", one=True)
+    return render_template("jobform.html", user_ai_jobs=user, one_user=one_user, the_title="add new user_ai_job", touslesuser=touslesuser, touslesjob=touslesjob)
 @app.route("/add_one_user_ai_job", methods=["GET","POST"])
 def add_one_user_ai_job():
 
