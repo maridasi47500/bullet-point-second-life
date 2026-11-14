@@ -1,4 +1,7 @@
 # bullet-point-second-life
+- common actions : use comb mirror toothbrush
+- Bullet points to break down tasks of current job
+- unusual : Bullet points to break down tasks of an imaginary job
 design a second life throuhg your job and AI
 🪞 Room-Based AI Inventory & Workflow
 
